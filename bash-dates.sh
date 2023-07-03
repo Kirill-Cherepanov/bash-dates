@@ -22,22 +22,37 @@ function next_date {
   FULL_DATE="$DATE +0300"
 }
 
-function get_value {
+function get_amount {
   NONE=0
   SMALL=29
   MEDIUM=72
   LARGE=93
 
-  value=0
+  AMOUNT=0
   N=$((RANDOM % 100))
 
   if [ $N -ge $LARGE ] ; then
-    value=$((RANDOM % 10 + 10))
+    AMOUNT=$((RANDOM % 10 + 10))
   elif [ $N -ge $MEDIUM ] ; then
-    value=$((RANDOM % 5 + 5))
+    AMOUNT=$((RANDOM % 5 + 5))
   elif [ $N -ge $SMALL ] ; then
-    value=$((RANDOM % 5))
+    AMOUNT=$((RANDOM % 5))
   fi
 
-  return $value
+  return $AMOUNT
 }
+
+AMOUNT=0
+for VALUE in {1..100}
+do
+  if [ $AMOUNT = 0 ] ; then
+    next_date
+    get_amount
+  fi
+
+  if [ $AMOUNT != 0 ] ; then
+    AMOUNT=$((AMOUNT - 1))
+    echo $FULL_DATE
+    echo $VALUE
+  fi
+done
