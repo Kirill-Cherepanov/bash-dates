@@ -21,3 +21,23 @@ function next_date {
   
   FULL_DATE="$DATE +0300"
 }
+
+function get_value {
+  NONE=0
+  SMALL=29
+  MEDIUM=72
+  LARGE=93
+
+  value=0
+  N=$((RANDOM % 100))
+
+  if [ $N -ge $LARGE ] ; then
+    value=$((RANDOM % 10 + 10))
+  elif [ $N -ge $MEDIUM ] ; then
+    value=$((RANDOM % 5 + 5))
+  elif [ $N -ge $SMALL ] ; then
+    value=$((RANDOM % 5))
+  fi
+
+  return $value
+}
