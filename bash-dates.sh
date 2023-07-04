@@ -48,11 +48,11 @@ do
   if [ $AMOUNT = 0 ] ; then
     next_date
     get_amount
+    echo "Commits: $AMOUNT"
   fi
 
   if [ $AMOUNT != 0 ] ; then
     AMOUNT=$((AMOUNT - 1))
     echo $FULL_DATE
-    echo $VALUE
   fi
 done
